@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Air Quality Prediction</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles1.css') }}">
+</head>
+<body>
+	<h1>Air Quality Prediction</h1>
+
+    <form method="POST" action="/predict">
+        <div class="first">
+            <input class="co" type="text" name="CO" placeholder="CO">
+            <input type="text" name="S1" placeholder="S1">
+            <input type="text" name="S2" placeholder="S2">
+            <input type="text" name="NOx" placeholder="NOx">
+        </div>
+        <div class="second">
+            <input type="text" name="S3" placeholder="S3">
+            <input type="text" name="NO2" placeholder="NO2">
+            <input type="text" name="S4" placeholder="S4">
+            <input type="text" name="S5" placeholder="S5">
+        </div>
+        <input type="submit" name="Predict" value="Predict">
+        {% if air_quality %}
+		<h1>Predicted Quality is  {{ air_quality }} &#181g/m <sup>3</sup></h1>
+	{% endif %}
+	{% if msg %}
+		<h1>{{ msg }}</h1>
+	{% endif %}
+    </form>
+        <br><br>
+        <div id="wrap">
+            <div class="wrap">
+                <h2>Values to enter:</h2>
+            <p>
+                1.True hourly averaged concentration CO in &#181g/m <sup>3</sup>
+                <br>
+                2.PT08.S1 (tin oxide) hourly averaged sensor response
+                <br>
+                3.PT08.S2 (titania) hourly averaged sensor response
+                <br>
+                4.True hourly averaged NOx concentration in ppb
+                <br>
+                5.PT08.S3 (tungsten oxide) hourly averaged sensor response
+                <br>
+                6.True hourly averaged NO2 concentration in &#181g/m <sup>3</sup>
+                <br>
+                7.PT08.S4 (tungsten oxide) hourly averaged sensor response
+                <br>
+                8.PT08.S5 (indium oxide) hourly averaged sensor response
+            </p>
+            </div>
+            <div class="wrap">
+                <p class="details">
+                    Ambient Air Quality Standards in India
+                    
+                        <li>Sulphur Dioxide (SO <sub>2</sub>)  ----  50 - 80 &#181g/m <sup>3</sup></li>
+                        <li>Nitrogen Dioxide (NO <sub>2</sub>)  ----  40 - 80 &#181g/m <sup>3</sup></li>
+                        <li>Lead (Pb) ---- 0.50 - 1 &#181g/m <sup>3</sup></li>
+                        <li>Carbon MonoOxide (CO) ---- 2 - 4 mg/m <sup>3</sup></li>
+                        <li>Benzene (C<sub>6</sub>H<sub>6</sub>) ---- 5 &#181g/m <sup>3</sup></li>
+                    
+                </p>
+            </div>
+        </div>
+</body>
+</html>
